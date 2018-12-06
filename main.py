@@ -7,5 +7,7 @@ if __name__ == '__main__':
     text='Zielke, S., 2008. Exploring asymmetric effects in the formation of retail price'
     words_spilt=ppl.get_words_top(text)
     print(words_spilt)
-    result=trans_api.get_trans(words_spilt)
+    # result=trans_api.get_trans(words_spilt)
+    result=trans_api.get_voice(words_spilt)
+
     print(result)
