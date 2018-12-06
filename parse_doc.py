@@ -1,17 +1,26 @@
+import re
 import string
 import importlib
+import urllib.request
 import sys
 from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import LTTextBoxHorizontal, LAParams, LTTextBox
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfinterp import PDFTextExtractionNotAllowed
 from pdfminer.pdfparser import PDFParser, PDFDocument
-
+import requests
 importlib.reload(sys)
 
 def parsepdf(_path):
     results = ''
-    fp = open(_path, 'rb')  # rb以二进制读模式打开本地pdf文件
+    print("pdf开始加载")
+    is_http=True if _path.startswith('http') else False
+    if is_http:
+        fp=urllib.request.urlopen(_path)
+    else:
+        fp = open(_path, 'rb')  # rb以二进制读模式打开本地pdf文件
+    print("pdf加载完成")
+
     # 用文件对象来创建一个pdf文档分析器
     praser_pdf = PDFParser(fp)
     # 创建一个PDF文档

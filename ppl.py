@@ -13,7 +13,7 @@ def get_words_sort(arr):
     return result
 
 
-def get_words_top(text):
+def get_words_top(text,top):
     stop_words = nltk.corpus.stopwords.words('english')
     stop_words.append('the')
     text = re.sub(r"[%s]+" % punctuation, "", text)
@@ -26,8 +26,8 @@ def get_words_top(text):
     for w in word_tokens:
         if len(w) > 2 and w not in stop_words:
             word_split.append(w)
-
-    return get_words_sort(word_split)
+    words_sort=get_words_sort(word_split)
+    return words_sort[:top]
 
 
 
